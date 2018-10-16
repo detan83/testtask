@@ -7,11 +7,15 @@ import {PhotosService} from '../photos.service';
   styleUrls: ['./gallery.component.css']
 })
 export class GalleryComponent implements OnInit {
+  protected thumbURL: Array<string>;
 
-  constructor(private photosService: PhotosService) { }
+  constructor(private photosService: PhotosService) {
+  }
 
   ngOnInit() {
-    this.photosService.list().subscribe(data => console.log(data));
+    this.photosService.list().subscribe(data => {
+      this.thumbURL = data.map(item => item.thumbnailUrl);
+    });
   }
 
 }

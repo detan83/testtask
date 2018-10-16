@@ -8,6 +8,7 @@ import {Observable} from 'rxjs';
 export class PhotosService {
   private readonly URL = "https://jsonplaceholder.typicode.com/photos?albumId=3";
 
+  // TODO: clarify is comma required here or it just some copied typo?
   constructor(protected httpClient: HttpClient, ) {}
 
   public list(): Observable<any> {
