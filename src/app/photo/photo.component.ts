@@ -16,4 +16,8 @@ export class PhotoComponent {
     return selectedPhotoId > 0 ? photos[photos.findIndex(photo => photo.id === selectedPhotoId)].url : '';
   }
 
+  next     = () => this.ngRedux.dispatch({type: 'SHOW_NEXT_PHOTO'});
+  previous = () => this.ngRedux.dispatch({type: 'SHOW_PREVIOUS_PHOTO'});
+  close    = () => this.ngRedux.dispatch({type: 'CLOSE_PHOTO'});
+
 }
