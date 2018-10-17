@@ -13,13 +13,13 @@ import {bind} from '@angular/core/src/render3/instructions';
 export class PhotoComponent {
   private subsctiption;
   constructor(private ngRedux: NgRedux<IAppState>) {
-    this.subsctiption = this.bindToKeyboard().pipe(filter(() => !!this.ngRedux.getState().selectedPhotoId))
+    this.subsctiption = this.bindToKeyboard().pipe(filter((e) => !!this.ngRedux.getState().selectedPhotoId))
       .subscribe(e => {
+        // @ts-ignore
         const keyCode = e.keyCode;
         if (keyCode === 37) {
           this.previous();
-        }
-        else if (keyCode === 39) {
+        } else if (keyCode === 39) {
           this.next();
 
         }
@@ -27,13 +27,13 @@ export class PhotoComponent {
       });
   }
 
-  private bindToKeyboard() {
-    const obs$ = fromEvent(document, "keydown");
+  private bindToKeyboard(): Observable<Event> {
+    const obs$ = fromEvent(document, 'keydown');
     return obs$;
   }
 
   protected getSelectedPhoto(): string {
-    let {photos, selectedPhotoId} = this.ngRedux.getState();
+    const {photos, selectedPhotoId} = this.ngRedux.getState();
     return selectedPhotoId > 0 ? photos[photos.findIndex(photo => photo.id === selectedPhotoId)].url : '';
   }
 
