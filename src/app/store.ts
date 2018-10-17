@@ -10,7 +10,6 @@ function fetchGallery(state: IAppState, action: any): IAppState {
 
 
 function selectPhoto(state: IAppState, action: any) {
-  debugger;
   return Object.assign({}, state, {selectedPhotoId: action.photo.id});
 }
 

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NgRedux, select} from '@angular-redux/store';
+import {NgRedux} from '@angular-redux/store';
 import {IAppState} from '../store';
 
 @Component({
@@ -8,9 +8,12 @@ import {IAppState} from '../store';
   styleUrls: ['./photo.component.css']
 })
 export class PhotoComponent {
-  @select() selectedPhotoId;
-
   constructor(private ngRedux: NgRedux<IAppState>) {
+  }
+
+  protected getSelectedPhoto(): string {
+    let {photos, selectedPhotoId} = this.ngRedux.getState();
+    return selectedPhotoId > 0 ? photos[photos.findIndex(photo => photo.id === selectedPhotoId)].url : '';
   }
 
 }

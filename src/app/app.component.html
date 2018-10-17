@@ -1,11 +1,12 @@
 <p>
   Test task by Dmitri Tanasiitsuk
 </p>
-<div>
-<app-photo>
+<div *ngIf="(selectedPhotoId | async) > 0; then photo else galery"></div>
+<ng-template #photo>
+  <app-photo>
   </app-photo>
-</div>
-<div>
-<app-gallery>
+</ng-template>
+<ng-template #galery>
+  <app-gallery>
   </app-gallery>
-</div>
+</ng-template>
