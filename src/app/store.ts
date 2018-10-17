@@ -3,9 +3,13 @@ export interface IAppState {
   photos: object[];
 }
 
-function fetchGallery(state: IAppState, action: any): IAppState {
+function addPropertyToObjects(photos: Object[], key: string, value: any) {
+ return photos.map(photo => (photo[key] = value, photo));
+}
 
-  return  Object.assign({}, state, { photos: state.photos.concat(action.photos) });
+function fetchGallery(state: IAppState, action: any): IAppState {
+  const modifiedArray = addPropertyToObjects(action.photos.concat([]), 'selected', false);
+  return  Object.assign({}, state, { photos: state.photos.concat(modifiedArray) });
 }
 
 export function rootReducer(state: IAppState, action) {
