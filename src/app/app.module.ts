@@ -8,12 +8,14 @@ import { PhotoComponent } from './photo/photo.component';
 import { PhotosService } from './photos.service';
 import {NgRedux, NgReduxModule} from '@angular-redux/store';
 import {IAppState, rootReducer} from './store';
+import {ToggleFullscreenDirective} from './fullscreen/toggleFullscreenDerective';
 
 @NgModule({
   declarations: [
     AppComponent,
     GalleryComponent,
-    PhotoComponent
+    PhotoComponent,
+    ToggleFullscreenDirective
   ],
   imports: [
     BrowserModule,
