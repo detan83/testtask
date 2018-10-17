@@ -1,20 +1,17 @@
 // TODO: rename interface with more clear name
 export interface IAppState {
   photos: any[];
-}
-
-function addPropertyToObjects(photos: Object[], key: string, value: any) {
- return photos.map(photo => (photo[key] = value, photo));
+  selectedPhotoId: number;
 }
 
 function fetchGallery(state: IAppState, action: any): IAppState {
-  const modifiedArray = addPropertyToObjects(action.photos.concat([]), 'selected', false);
-  return  Object.assign({}, state, { photos: state.photos.concat(modifiedArray) });
+  return  Object.assign({}, state, { photos: state.photos.concat(action.photos) });
 }
 
-function toggleProperty(state: IAppState, action: any) {
-  const indexOnArray = state.photos.findIndex(photo => photo.id === action.photo.id);
-  return Object.assign({}, state, {photos: Object.assign([...state.photos], {[indexOnArray]: Object.assign({}, state.photos[indexOnArray], {selected: !state.photos[indexOnArray].selected})} )});
+
+function selectPhoto(state: IAppState, action: any) {
+  debugger;
+  return Object.assign({}, state, {selectedPhotoId: action.photo.id});
 }
 
 export function rootReducer(state: IAppState, action) {
@@ -22,7 +19,7 @@ export function rootReducer(state: IAppState, action) {
 
   switch (action.type) {
     case 'FETCH_GALLERY_SUCCESS': newState = fetchGallery(state, action); break;
-    case 'SELECT_PHOTO'         : newState = toggleProperty(state, action); break;
+    case 'SELECT_PHOTO'         : newState = selectPhoto(state, action); break;
   }
   return newState || state;
 }
