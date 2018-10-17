@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { GalleryComponent } from './gallery/gallery.component';
 import { PhotoComponent } from './photo/photo.component';
 import { PhotosService } from './photos.service';
+import {NgRedux, NgReduxModule} from '@angular-redux/store';
+import {IAppState, rootReducer} from './store';
 
 @NgModule({
   declarations: [
@@ -15,9 +17,14 @@ import { PhotosService } from './photos.service';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    NgReduxModule
   ],
   providers: [PhotosService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.configureStore(rootReducer, {});
+  }
+}
