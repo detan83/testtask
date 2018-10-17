@@ -1,2 +1,2 @@
-<img *ngFor="let thumb of thumbURL" src="{{thumb}}">
+<img *ngFor="let photo of ( photos | async)" src="{{ photo.thumbnailUrl }}">
 
