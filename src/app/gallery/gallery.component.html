@@ -1,2 +1,2 @@
-<img *ngFor="let photo of ( photos | async)" src="{{ photo.thumbnailUrl }}">
+<img *ngFor="let photo of ( photos | async)" (click)="selectPhoto(photo)" src="{{ photo.thumbnailUrl }}">
 

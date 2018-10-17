@@ -15,12 +15,12 @@ export class GalleryComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.ngRedux.dispatch({type: 'FETCH_GALLERY_REQUEST'});
-
     this.photosService.list().subscribe(data => {
       this.ngRedux.dispatch({type: 'FETCH_GALLERY_SUCCESS', photos: data});
     });
   }
 
+  selectPhoto(photo: Object) {
+    this.ngRedux.dispatch({type: 'SELECT_PHOTO', photo: photo});
+  }
 }
