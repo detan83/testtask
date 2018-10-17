@@ -16,9 +16,9 @@ function selectPhoto(state: IAppState, action: any) {
 function moveTo (state: IAppState, action: any) {
   let nextPhotoId: number;
 
-  const getCurrentId: number = () => state.photos.findIndex(photo => photo.id === state.selectedPhotoId);
+  const getCurrentId = () => state.photos.findIndex(photo => photo.id === state.selectedPhotoId);
 
-  const getNextId: number = () =>  {
+  function getNextId(): number {
     let resultElementId: number;
     const currentId: number = getCurrentId();
 
